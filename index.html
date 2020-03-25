@@ -173,19 +173,15 @@
                     let countriesName = [];
                     var results = [];
 
-                    Object.keys(countries).forEach(value => {
-                        countriesName.push(value)
-                    })
-
                     Object.values(countries).forEach((value, index) => {
                         let tbody = '';
                         $.ajax({
                             type: "GET",
-                            url: "https://covid19.mathdro.id/api/countries/"+value,
+                            url: "https://covid19.mathdro.id/api/countries/"+value.name,
                             success: function(data2) {
                                 let date = new Date(data2.lastUpdate);
                                 tbody += "<tr>";
-                                    tbody += "<td>"+countriesName[index]+"</td>";
+                                    tbody += "<td>"+value.name+"</td>";
                                     tbody += "<td>"+data2.confirmed.value+"</td>";
                                     tbody += "<td>"+data2.deaths.value+"</td>";
                                     tbody += "<td>"+data2.recovered.value+"</td>";
